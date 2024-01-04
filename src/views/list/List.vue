@@ -13,7 +13,7 @@
                     v-model="searchName"
                     clearable
                 >
-                    <template #prepend>
+                    <template #append>
                         <el-button :icon="Search" />
                     </template></el-input>
                 <div class="searchDivider"></div>
@@ -24,12 +24,38 @@
                         <div class="flex-row-center">
                             <el-input-number
                                 class="sortIpt"
-                                v-model="num"
+                                v-model="num1"
                                 :min="1"
                                 :max="10"
-                                controls-position="right"
+                                :step="0.1"
                             />
-                            mm
+                            <div class="sortUnit">mm</div>
+                        </div>
+                    </div>
+                    <div class="sortItem flex-row-center">
+                        <div class="sortTag">触发压力</div>
+                        <div class="flex-row-center">
+                            <el-input-number
+                                class="sortIpt"
+                                v-model="num2"
+                                :min="1"
+                                :max="10"
+                                :step="1"
+                            />
+                            <div class="sortUnit">g</div>
+                        </div>
+                    </div>
+                    <div class="sortItem flex-row-center">
+                        <div class="sortTag">总行程</div>
+                        <div class="flex-row-center">
+                            <el-input-number
+                                class="sortIpt"
+                                v-model="num4"
+                                :min="1"
+                                :max="10"
+                                :step="1"
+                            />
+                            <div class="sortUnit">mm</div>
                         </div>
                     </div>
                 </div>
@@ -43,7 +69,10 @@ import { ref } from 'vue';
 import { Search } from "@element-plus/icons-vue";
 
 const searchName = ref('');
-const num = ref(0)
+const num1 = ref();
+const num2 = ref();
+const num3 = ref();
+const num4 = ref();
 
 
 </script>

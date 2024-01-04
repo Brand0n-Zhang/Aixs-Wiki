@@ -43,15 +43,11 @@
                 margin-top: 24px;
 
                 :deep(.el-input__wrapper) {
-                    border-radius: 0 21px 21px 0;
-                    // background: #EBEEF4;
-                    border: 0;
+                    border-radius: 21px 0 0 21px;
                 }
 
-                :deep(.el-input-group__prepend) {
-                    border-radius: 21px 0 0 21px;
-                    // background: #EBEEF4;
-                    border: 0;
+                :deep(.el-input-group__append) {
+                    border-radius: 0 21px 21px 0;
                 }
             }
 
@@ -80,6 +76,7 @@
                     width: 243px;
                     height: 34px;
                     justify-content: space-between;
+                    margin-bottom: 17px;
 
                     .sortTag {
                         font-size: 15px;
@@ -90,11 +87,29 @@
                     }
 
                     .sortIpt {
-                        width: 100px;
+                        width: 120px;
                         height: 34px;
                         background: #EBEEF4;
-                        border-radius: 2px;
+                        border-radius: 17px;
                         text-align: start;
+
+                        :deep(.el-input__wrapper) {
+                            border-radius: 17px;
+                        }
+
+                        :deep(.el-input-number__decrease) {
+                            border-radius: 17px 0 0 17px;
+                        }
+
+                        :deep(.el-input-number__increase) {
+                            border-radius: 0 17px 17px 0;
+                        }
+                    }
+
+                    .sortUnit {
+                        font-size: 14px;
+                        margin-left: 8px;
+                        width: 16px;
                     }
                 }
             }
