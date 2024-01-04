@@ -46,6 +46,19 @@
                         </div>
                     </div>
                     <div class="sortItem flex-row-center">
+                        <div class="sortTag">触底压力</div>
+                        <div class="flex-row-center">
+                            <el-input-number
+                                class="sortIpt"
+                                v-model="num3"
+                                :min="1"
+                                :max="10"
+                                :step="1"
+                            />
+                            <div class="sortUnit">g</div>
+                        </div>
+                    </div>
+                    <div class="sortItem flex-row-center">
                         <div class="sortTag">总行程</div>
                         <div class="flex-row-center">
                             <el-input-number
@@ -60,7 +73,22 @@
                     </div>
                 </div>
             </div>
-            <div class="listBox"></div>
+            <div class="listBox">
+                <div
+                    class="listItem flex-column-center"
+                    v-for="item in dataList"
+                    :key="item.id"
+                >
+                    <div class="imgBox"></div>
+                    <div class="axisName">{{ item.name }}</div>
+                    <div class="axisDesc">{{ item.desc }}</div>
+                    <el-button
+                        class="goDetailBtn"
+                        color="rgba(0, 90, 255, 1)"
+                        type="primary"
+                    >查看详情</el-button>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -74,8 +102,33 @@ const num2 = ref();
 const num3 = ref();
 const num4 = ref();
 
+const dataList = ref([
+    {
+        id: 1,
+        img: '',
+        name: '测试轴',
+        desc: '测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字'
+    },
+    {
+        id: 2,
+        img: '',
+        name: '测试轴',
+        desc: '测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字'
+    },
+    {
+        id: 3,
+        img: '',
+        name: '测试轴',
+        desc: '测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字'
+    },
+    {
+        id: 4,
+        img: '',
+        name: '测试轴',
+        desc: '测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字'
+    }
+])
+
 
 </script>
-<style lang="less" rel="stylesheet/less" scoped>
-@import './List.less';
-</style>
+<style lang="less" rel="stylesheet/less" scoped>@import './List.less';</style>
