@@ -14,7 +14,10 @@
                     clearable
                 >
                     <template #append>
-                        <el-button :icon="Search" />
+                        <el-button
+                            :icon="Search"
+                            @click="initList"
+                        />
                     </template></el-input>
                 <div class="searchDivider"></div>
                 <div class="sortTitle">参数筛选</div>
@@ -76,10 +79,14 @@
             <div class="listBox">
                 <div
                     class="listItem flex-column-center"
-                    v-for="item in dataList"
+                    v-for="item in listData"
                     :key="item.id"
                 >
-                    <div class="imgBox"></div>
+                    <img
+                        class="imgBox"
+                        :src="item.img"
+                        alt=""
+                    >
                     <div class="axisName">{{ item.name }}</div>
                     <div class="axisDesc">{{ item.desc }}</div>
                     <el-button
@@ -93,42 +100,39 @@
     </div>
 </template>
 <script type="text/ecmascript-6" lang="ts" setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { Search } from "@element-plus/icons-vue";
+import { getAxisList } from '../../api';
 
 const searchName = ref('');
+
+const pageSize = ref(10);
+const pageNo = ref(1);
+
+const listData = ref<any[]>([]);
+
+onMounted(() => {
+    initList();
+});
+
+const initList = () => {
+    getAxisList({
+        name: searchName.value,
+        pageNo: pageNo.value,
+        pageSize: pageSize.value
+    }).then((res: any) => {
+        console.log(res.data.data);
+        listData.value = res.data.data.list;
+    });
+};
 const num1 = ref();
 const num2 = ref();
 const num3 = ref();
 const num4 = ref();
 
-const dataList = ref([
-    {
-        id: 1,
-        img: '',
-        name: '测试轴',
-        desc: '测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字'
-    },
-    {
-        id: 2,
-        img: '',
-        name: '测试轴',
-        desc: '测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字'
-    },
-    {
-        id: 3,
-        img: '',
-        name: '测试轴',
-        desc: '测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字'
-    },
-    {
-        id: 4,
-        img: '',
-        name: '测试轴',
-        desc: '测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字'
-    }
-])
 
 
 </script>
-<style lang="less" rel="stylesheet/less" scoped>@import './List.less';</style>
+<style lang="less" rel="stylesheet/less" scoped>
+@import './List.less';
+</style>
