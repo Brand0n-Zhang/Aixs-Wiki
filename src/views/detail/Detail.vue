@@ -1,6 +1,12 @@
 <template>
     <div class="detailPage">
         <div class="titleBar flex-column-center">
+            <el-icon
+                class="backIcon"
+                @click="goBack"
+            >
+                <Back />
+            </el-icon>
             <div class="titleText">
                 Axis Wiki
             </div>
@@ -68,7 +74,7 @@
 </template>
 <script type="text/ecmascript-6" lang="ts" setup>
 import { onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { getAxisDetail } from "../../api";
 import { axis } from "../../types/axisInterface";
 
@@ -82,11 +88,14 @@ const curImg = ref('');
 onMounted(() => {
     getAxisDetail({ id: axisId.value }).then((res: any) => {
         axisDetail.value = res.data.data;
-
         curImg.value = res.data.data.cover_img;
-        console.log(axisDetail.value);
     });
 });
+
+const router = useRouter();
+const goBack = () => {
+    router.go(-1);
+};
 </script>
 <style lang="less" rel="stylesheet/less" scoped>
 @import './Detail.less';

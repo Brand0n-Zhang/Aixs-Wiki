@@ -127,7 +127,6 @@ const initList = () => {
         pageNo: pageNo.value,
         pageSize: pageSize.value
     }).then((res: any) => {
-        console.log(res.data.data);
         listData.value = res.data.data.list;
     });
 };
