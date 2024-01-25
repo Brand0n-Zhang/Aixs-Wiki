@@ -2,12 +2,17 @@
     width: 100%;
     min-height: 100%;
     background-color: #F0F3F8;
+    padding-top: 63px;
 
     .titleBar {
         width: 100%;
         height: 63px;
         background-color: #fff;
         justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 5;
 
         .titleText {
             font-size: 19px;
@@ -121,14 +126,22 @@
             flex-direction: row;
             flex-wrap: wrap;
 
+            .listItem:hover {
+                box-shadow: 0 0 35px rgba(0, 89, 255, 0.2);
+                transform: scale(1.05);
+                transition: all 0.1s ease-in;
+            }
+
             .listItem {
                 width: 315px;
-                height: 486px;
+                height: 366px;
                 background: #FFFFFF;
                 border-radius: 13px;
                 margin-right: 42px;
                 margin-bottom: 42px;
                 position: relative;
+                cursor: pointer;
+                transition: all 0.1s ease-in 0s;
 
                 .imgBox {
                     width: 264px;

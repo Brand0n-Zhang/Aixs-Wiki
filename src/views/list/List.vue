@@ -82,18 +82,22 @@
                     v-for="item in listData"
                     :key="item.id"
                 >
-                    <img
+                    <el-image
                         class="imgBox"
-                        :src="item.img"
+                        :src="item.cover_img"
                         alt=""
+                        fit="cover"
+                        lazy
                     >
+                    </el-image>
+
                     <div class="axisName">{{ item.name }}</div>
-                    <div class="axisDesc">{{ item.desc }}</div>
+                    <!-- <div class="axisDesc">{{ item.desc }}</div>
                     <el-button
                         class="goDetailBtn"
                         color="rgba(0, 90, 255, 1)"
                         type="primary"
-                    >查看详情</el-button>
+                    >查看详情</el-button> -->
                 </div>
             </div>
         </div>
