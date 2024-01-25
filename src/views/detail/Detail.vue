@@ -25,7 +25,7 @@
                 <div class="axisName">{{ axisDetail.name || '- ' }}</div>
                 <div class="groupNumber">车牌号：xxx</div>
                 <div class="priceTag">参考价格</div>
-                <div class="priceNum">￥{{ axisDetail.price }}</div>
+                <div class="priceNum">￥{{ axisDetail.price || ' --.--' }}</div>
             </div>
             <div class="rightInfoBox">
                 <div class="detailLine flex-row-center">
