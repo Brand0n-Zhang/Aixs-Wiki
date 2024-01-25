@@ -81,6 +81,7 @@
                     class="listItem flex-column-center"
                     v-for="item in listData"
                     :key="item.id"
+                    @click="goDetail(item.id)"
                 >
                     <el-image
                         class="imgBox"
@@ -107,6 +108,7 @@
 import { onMounted, ref } from 'vue';
 import { Search } from "@element-plus/icons-vue";
 import { getAxisList } from '../../api';
+import { useRouter } from 'vue-router';
 
 const searchName = ref('');
 
@@ -127,6 +129,16 @@ const initList = () => {
     }).then((res: any) => {
         console.log(res.data.data);
         listData.value = res.data.data.list;
+    });
+};
+
+const router = useRouter();
+const goDetail = (id: number) => {
+    router.push({
+        path: '/detail',
+        query: {
+            id: id
+        }
     });
 };
 const num1 = ref();

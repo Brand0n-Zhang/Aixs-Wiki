@@ -26,5 +26,8 @@ export const Request = {
 
 export const getAxisList = (params: any) => {
     return Request.get('getAxisList', params);
+};
 
+export const getAxisDetail = (params: any) => {
+    return Request.get('getAxisDetail', params);
 };
