@@ -20,7 +20,7 @@
                 >
                     <el-input
                         class="loginIpt"
-                        v-model="ruleForm.name"
+                        v-model="ruleForm.nickname"
                     ></el-input>
                 </el-form-item>
                 <el-form-item
@@ -29,7 +29,7 @@
                 >
                     <el-input
                         class="loginIpt"
-                        v-model="ruleForm.account"
+                        v-model="ruleForm.userName"
                     ></el-input>
                 </el-form-item>
                 <el-form-item
@@ -65,21 +65,22 @@
 <script type="text/ecmascript-6" lang="ts" setup>
 import { reactive, ref } from "vue";
 import type { FormInstance, FormRules } from 'element-plus/lib/components/index.js';
+import { register } from "../../api";
 
 const modalTitle = ref('登录');
 
 const ruleFormRef = ref<FormInstance>();
 const ruleForm = reactive({
-    account: '',
+    userName: '',
     password: '',
-    name: ''
+    nickname: ''
 });
 
 const rules = reactive<FormRules>({
-    account: [
+    userName: [
         { required: true, message: '请输入用户名', trigger: 'change' },
     ],
-    name: [
+    nickname: [
         { required: true, message: '请输入昵称', trigger: 'change' },
     ],
     password: [
@@ -98,7 +99,13 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     await formEl.validate((valid, fields) => {
         if (valid) {
-
+            register({
+                username: ruleForm.userName,
+                nickname: ruleForm.nickname,
+                password: ruleForm.password
+            }).then((res: any) => {
+                console.log(res);
+            });
 
         } else {
             console.log('error submit!', fields);
@@ -107,4 +114,6 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 };
 defineExpose({ openModal });
 </script>
-<style lang="less" rel="stylesheet/less" scoped>@import './LoginModal.less';</style>
+<style lang="less" rel="stylesheet/less" scoped>
+@import './LoginModal.less';
+</style>
