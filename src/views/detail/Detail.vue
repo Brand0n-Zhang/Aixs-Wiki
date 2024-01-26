@@ -1,16 +1,6 @@
 <template>
     <div class="detailPage">
-        <div class="titleBar flex-column-center">
-            <el-icon
-                class="backIcon"
-                @click="goBack"
-            >
-                <Back />
-            </el-icon>
-            <div class="titleText">
-                Axis Wiki
-            </div>
-        </div>
+        <TitleBar :is-show-back="true"></TitleBar>
         <div
             class="contentBox flex-row"
             v-if="axisDetail"
@@ -74,9 +64,10 @@
 </template>
 <script type="text/ecmascript-6" lang="ts" setup>
 import { onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { getAxisDetail } from "../../api";
 import { axis } from "../../types/axisInterface";
+import TitleBar from "../../components/titleBar/TitleBar.vue";
 
 const route = useRoute();
 const axisId = ref(route.query.id);
@@ -92,10 +83,7 @@ onMounted(() => {
     });
 });
 
-const router = useRouter();
-const goBack = () => {
-    router.go(-1);
-};
+
 </script>
 <style lang="less" rel="stylesheet/less" scoped>
 @import './Detail.less';

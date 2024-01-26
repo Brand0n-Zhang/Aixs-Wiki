@@ -1,10 +1,6 @@
 <template>
     <div class="listPage">
-        <div class="titleBar flex-column-center">
-            <div class="titleText">
-                Axis Wiki
-            </div>
-        </div>
+        <TitleBar></TitleBar>
         <div class="pageContent flex-row">
             <div class="searchBox">
                 <div class="searchTitle">轴体搜索</div>
@@ -130,6 +126,7 @@ import { onMounted, ref } from 'vue';
 import { Search, Delete } from "@element-plus/icons-vue";
 import { getAxisList } from '../../api';
 import { useRouter } from 'vue-router';
+import TitleBar from '../../components/titleBar/TitleBar.vue';
 
 const searchName = ref('');
 
