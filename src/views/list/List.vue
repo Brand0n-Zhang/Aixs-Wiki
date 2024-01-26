@@ -16,7 +16,7 @@
                     <template #append>
                         <el-button
                             :icon="Search"
-                            @click="initList"
+                            @click="goSearch"
                         />
                     </template></el-input>
                 <div class="searchDivider"></div>
@@ -27,9 +27,9 @@
                         <div class="flex-row-center">
                             <el-input-number
                                 class="sortIpt"
-                                v-model="num1"
+                                v-model="spring_length"
                                 :min="1"
-                                :max="10"
+                                :max="100"
                                 :step="0.1"
                             />
                             <div class="sortUnit">mm</div>
@@ -40,9 +40,9 @@
                         <div class="flex-row-center">
                             <el-input-number
                                 class="sortIpt"
-                                v-model="num2"
+                                v-model="trigger_pressure"
                                 :min="1"
-                                :max="10"
+                                :max="100"
                                 :step="1"
                             />
                             <div class="sortUnit">g</div>
@@ -53,9 +53,9 @@
                         <div class="flex-row-center">
                             <el-input-number
                                 class="sortIpt"
-                                v-model="num3"
+                                v-model="bottom_pressure"
                                 :min="1"
-                                :max="10"
+                                :max="100"
                                 :step="1"
                             />
                             <div class="sortUnit">g</div>
@@ -66,14 +66,35 @@
                         <div class="flex-row-center">
                             <el-input-number
                                 class="sortIpt"
-                                v-model="num4"
+                                v-model="total_travel"
                                 :min="1"
-                                :max="10"
-                                :step="1"
+                                :max="100"
+                                :step="0.1"
                             />
                             <div class="sortUnit">mm</div>
                         </div>
                     </div>
+                    <!-- <div class="searchBtn">搜索</div> -->
+                    <div class="buttonLine flex-row-center">
+
+                        <el-button
+                            class="bottomSearchBtn"
+                            type="primary"
+                            round
+                            size="large"
+                            color="rgba(0, 90, 255, 1)"
+                            @click="goSearch"
+                            :icon="Search"
+                        >搜索</el-button>
+                        <el-button
+                            :icon="Delete"
+                            circle
+                            plain
+                            size="large"
+                            @click="reset"
+                        />
+                    </div>
+
                 </div>
             </div>
             <div class="listBox">
@@ -106,7 +127,7 @@
 </template>
 <script type="text/ecmascript-6" lang="ts" setup>
 import { onMounted, ref } from 'vue';
-import { Search } from "@element-plus/icons-vue";
+import { Search, Delete } from "@element-plus/icons-vue";
 import { getAxisList } from '../../api';
 import { useRouter } from 'vue-router';
 
@@ -121,14 +142,27 @@ onMounted(() => {
     initList();
 });
 
+const spring_length = ref();
+const trigger_pressure = ref();
+const bottom_pressure = ref();
+const total_travel = ref();
+
 const initList = () => {
     getAxisList({
         name: searchName.value,
+        spring_length: spring_length.value,
+        trigger_pressure: trigger_pressure.value,
+        bottom_pressure: bottom_pressure.value,
+        total_travel: total_travel.value,
         pageNo: pageNo.value,
         pageSize: pageSize.value
     }).then((res: any) => {
         listData.value = res.data.data.list;
     });
+};
+
+const goSearch = () => {
+    initList();
 };
 
 const router = useRouter();
@@ -140,11 +174,14 @@ const goDetail = (id: number) => {
         }
     });
 };
-const num1 = ref();
-const num2 = ref();
-const num3 = ref();
-const num4 = ref();
 
+const reset = () => {
+    spring_length.value = null;
+    trigger_pressure.value = null;
+    bottom_pressure.value = null;
+    total_travel.value = null;
+    searchName.value = '';
+}
 
 
 </script>
