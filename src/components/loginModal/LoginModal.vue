@@ -83,6 +83,9 @@ import { computed, reactive, ref } from "vue";
 import type { FormInstance, FormRules } from 'element-plus/lib/components/index.js';
 import { login, register } from "../../api";
 import { ElMessage } from "element-plus";
+import { userStorePinia } from "../../store/user";
+
+const userStore = userStorePinia();
 
 const modalTitle = computed(() => {
     switch (modalAction.value) {
@@ -135,6 +138,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
                     }).then((res: any) => {
                         console.log(res);
                         ElMessage.success('登录成功');
+                        userStore.setUserInfo(res.data.data.token, res.data.data.nickname);
                         afterSuccess();
                         isShowModal.value = false;
                         // location.reload();
@@ -166,6 +170,7 @@ const afterSuccess = () => {
     ruleForm.nickname = '';
     ruleForm.userName = '';
     ruleForm.password = '';
+    modalAction.value = 1;
 };
 defineExpose({ openModal });
 </script>
