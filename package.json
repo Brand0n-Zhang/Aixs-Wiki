@@ -20,6 +20,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
     "less": "^4.2.0",
+    "postcss-px-to-viewport-8-plugin": "^1.2.5",
     "sass": "^1.70.0",
     "typescript": "^5.2.2",
     "unplugin-auto-import": "^0.17.3",

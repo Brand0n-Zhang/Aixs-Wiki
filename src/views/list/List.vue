@@ -93,7 +93,12 @@
 
                 </div>
             </div>
-            <div class="listBox">
+            <div
+                class="listBox"
+                v-infinite-scroll="load"
+                :infinite-scroll-immediate="false"
+                :infinite-scroll-disabled="!canLoadMore"
+            >
                 <div
                     class="listItem flex-column-center"
                     v-for="item in listData"
@@ -130,12 +135,14 @@ import TitleBar from '../../components/titleBar/TitleBar.vue';
 
 const searchName = ref('');
 
-const pageSize = ref(10);
+const pageSize = ref(12);
 const pageNo = ref(1);
 
 const listData = ref<any[]>([]);
+const canLoadMore = ref(true);
 
 onMounted(() => {
+    listData.value = [];
     initList();
 });
 
@@ -154,11 +161,24 @@ const initList = () => {
         pageNo: pageNo.value,
         pageSize: pageSize.value
     }).then((res: any) => {
-        listData.value = res.data.data.list;
+        for (const item of res.data.data.list) {
+            listData.value.push(item);
+        }
+        if (res.data.data.list.length < pageSize.value) {
+            canLoadMore.value = false;
+        }
     });
 };
 
+const load = () => {
+    pageNo.value++;
+    initList();
+};
+
 const goSearch = () => {
+    canLoadMore.value = true;
+    pageNo.value = 1;
+    listData.value = [];
     initList();
 };
 
