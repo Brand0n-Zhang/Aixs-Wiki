@@ -32,11 +32,11 @@
                         size="small"
                         round
                     >注册</el-button> -->
-                    <el-button
+                    <!-- <el-button
                         size="small"
                         round
                         @click="goLogin"
-                    >登录</el-button>
+                    >登录</el-button> -->
                 </el-descriptions-item>
                 <el-descriptions-item label="外设交流群">859550185</el-descriptions-item>
                 <el-descriptions-item label="网站建议">amarok1217@163.com</el-descriptions-item>
