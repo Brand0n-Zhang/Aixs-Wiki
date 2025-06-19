@@ -5,12 +5,16 @@
             class="contentBox flex-row"
             v-if="axisDetail"
         >
+            <!-- <transition name="fade"> -->
             <el-image
                 class="curAxisImg"
+                :key="curImg"
                 :src="curImg"
                 fit="cover"
+                :preview-src-list="[curImg]"
             >
             </el-image>
+            <!-- </transition> -->
             <div class="midInfoBox">
                 <div class="axisName">{{ axisDetail.name || '- ' }}</div>
                 <div class="groupNumber">车牌号：xxx</div>
@@ -56,8 +60,27 @@
                 </div>
                 <div class="detailLine flex-row-center">
                     <div class="detailTag">弹簧类型：</div>
-                    <div class="detailContent">{{ axisDetail.spring_type || '- ' }}mm</div>
+                    <div class="detailContent">{{ axisDetail.spring_type || '- ' }}</div>
                 </div>
+            </div>
+        </div>
+        <div class="detailImgBox flex-row">
+            <div
+                class="detailImgItemBox"
+                v-for="(item, index) in detailImgList"
+                :key="index"
+                @mouseover="onHoverImg(item)"
+            >
+                <el-image
+                    class="detailImgItem"
+                    :src="item"
+                    fit="cover"
+                    lazy
+                    :preview-src-list="detailImgList"
+                    :initial-index="index"
+                    close-on-press-escape
+                >
+                </el-image>
             </div>
         </div>
     </div>
@@ -75,14 +98,21 @@ const axisId = ref(route.query.id);
 const axisDetail = ref<axis>();
 
 const curImg = ref('');
+const detailImgList = ref<string[]>([]);
 
 onMounted(() => {
     getAxisDetail({ id: axisId.value }).then((res: any) => {
         axisDetail.value = res.data.data;
         curImg.value = res.data.data.cover_img;
+        if (res.data.data.imgs) {
+            detailImgList.value = res.data.data.imgs.split(',');
+        }
     });
 });
 
+const onHoverImg = (item: string) => {
+    curImg.value = item;
+}
 
 </script>
 <style lang="less" rel="stylesheet/less" scoped>
