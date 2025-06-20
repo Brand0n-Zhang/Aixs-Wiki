@@ -105,6 +105,14 @@
                     :key="item.id"
                     @click="goDetail(item.id)"
                 >
+                    <div
+                        class="typeTag c1"
+                        v-if="item.type == '磁轴'"
+                    >{{ item.type }}</div>
+                    <div
+                        class="typeTag c2"
+                        v-if="item.type == '机械轴'"
+                    >{{ item.type }}</div>
                     <el-image
                         class="imgBox"
                         :src="item.cover_img"
