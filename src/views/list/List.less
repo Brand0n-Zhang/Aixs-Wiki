@@ -148,23 +148,42 @@
                 cursor: pointer;
                 transition: all 0.1s ease-in 0s;
 
-                .typeTag {
-                    font-size: 12px;
-                    padding: 8px;
+                .tagList {
                     position: absolute;
                     top: 0;
                     left: 0;
-                    color: #fff;
                     z-index: 2;
                     border-radius: 13px 0 13px 0;
+                    overflow: hidden;
+
+                    .typeTag {
+                        font-size: 12px;
+                        padding: 8px;
+                        color: #fff;
+                        // border-radius: 0px 0 13px 0;
+                        font-family: HYCuYuan;
+                    }
+
+                    .c1 {
+                        background-color: #3985e8;
+                    }
+
+                    .c2 {
+                        background-color: #313131;
+                    }
+
+                    .c3 {
+                        background-color: #fff701;
+                        color: #000;
+                    }
+
+                    .c4 {
+                        background-color: #dbdbdb;
+                        color: #000;
+
+                    }
                 }
 
-                .c1 {
-                    background-color: #3985e8;
-                }
-                .c2 {
-                    background-color: #313131;
-                }
 
                 .imgBox {
                     width: 264px;

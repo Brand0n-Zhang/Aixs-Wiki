@@ -105,14 +105,25 @@
                     :key="item.id"
                     @click="goDetail(item.id)"
                 >
-                    <div
-                        class="typeTag c1"
-                        v-if="item.type == '磁轴'"
-                    >{{ item.type }}</div>
-                    <div
-                        class="typeTag c2"
-                        v-if="item.type == '机械轴'"
-                    >{{ item.type }}</div>
+                    <div class="tagList">
+                        <div
+                            class="typeTag c1"
+                            v-if="item.type == '磁轴'"
+                        >{{ item.type }}</div>
+                        <div
+                            class="typeTag c2"
+                            v-if="item.type == '机械轴'"
+                        >{{ item.type }}</div>
+                        <div
+                            class="typeTag c3"
+                            v-if="item.trigger_type == '段落'"
+                        >{{ item.trigger_type }}</div>
+                        <div
+                            class="typeTag c4"
+                            v-if="item.sound_type == '静音'"
+                        >{{ item.sound_type }}</div>
+                        
+                    </div>
                     <el-image
                         class="imgBox"
                         :src="item.cover_img"
