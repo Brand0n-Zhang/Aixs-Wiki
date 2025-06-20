@@ -17,6 +17,25 @@
             <!-- </transition> -->
             <div class="midInfoBox">
                 <div class="axisName">{{ axisDetail.name || '- ' }}</div>
+                <div class="tagList flex-row">
+                    <div
+                        class="typeTag c1"
+                        v-if="axisDetail.type == '磁轴'"
+                    >{{ axisDetail.type }}</div>
+                    <div
+                        class="typeTag c2"
+                        v-if="axisDetail.type == '机械轴'"
+                    >{{ axisDetail.type }}</div>
+                    <div
+                        class="typeTag c3"
+                        v-if="axisDetail.trigger_type == '段落'"
+                    >{{ axisDetail.trigger_type }}</div>
+                    <div
+                        class="typeTag c4"
+                        v-if="axisDetail.sound_type == '静音'"
+                    >{{ axisDetail.sound_type }}</div>
+
+                </div>
                 <div class="groupNumber">车牌号：{{ axisDetail.qq || '--' }}</div>
                 <div class="priceTag">参考价格</div>
                 <div class="priceNum">￥{{ axisDetail.price || ' --.--' }}</div>
