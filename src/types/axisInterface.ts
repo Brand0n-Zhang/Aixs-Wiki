@@ -14,4 +14,5 @@ export interface axis {
     cover_img: string;
     trigger_travel: number;
     price: number;
+    qq: string;
 }

@@ -5,7 +5,7 @@ module.exports = {
   plugins: {
     'postcss-px-to-viewport-8-plugin': {
       unitToConvert: 'px', // 需要转换的单位，默认为"px"
-      viewportWidth: 1920, // 设计稿的视口宽度
+      viewportWidth: 2160, // 设计稿的视口宽度
       unitPrecision: 5, // 单位转换后保留的精度
       propList: ['*', '!font-size'], // 能转化为vw的属性列表,!font-size表示font-size后面的单位不会被转换
       viewportUnit: 'vw', // 希望使用的视口单位
@@ -20,7 +20,7 @@ module.exports = {
       include: [/src/], // 如果设置了include，那将只有匹配到的文件才会被转换
       landscape: false, // 是否添加根据 landscapeWidth 生成的媒体查询条件 @media (orientation: landscape)
       landscapeUnit: 'vw', // 横屏时使用的单位
-      landscapeWidth: 1920, // 横屏时使用的视口宽度
+      landscapeWidth: 2160, // 横屏时使用的视口宽度
     },
   },
 };

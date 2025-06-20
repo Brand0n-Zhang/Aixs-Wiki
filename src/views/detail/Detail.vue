@@ -17,7 +17,7 @@
             <!-- </transition> -->
             <div class="midInfoBox">
                 <div class="axisName">{{ axisDetail.name || '- ' }}</div>
-                <div class="groupNumber">车牌号：xxx</div>
+                <div class="groupNumber">车牌号：{{ axisDetail.qq || '--' }}</div>
                 <div class="priceTag">参考价格</div>
                 <div class="priceNum">￥{{ axisDetail.price || ' --.--' }}</div>
             </div>
@@ -89,13 +89,13 @@
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { getAxisDetail } from "../../api";
-import { axis } from "../../types/axisInterface";
+// import { axis } from "../../types/axisInterface";
 import TitleBar from "../../components/titleBar/TitleBar.vue";
 
 const route = useRoute();
 const axisId = ref(route.query.id);
 
-const axisDetail = ref<axis>();
+const axisDetail = ref<any>();
 
 const curImg = ref('');
 const detailImgList = ref<string[]>([]);

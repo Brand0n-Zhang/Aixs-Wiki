@@ -8,7 +8,7 @@
             <Back />
         </el-icon>
         <div class="titleText">
-            Axis Wiki
+            Axis Wiki 客轴求键
         </div>
         <el-popover
             placement="bottom"

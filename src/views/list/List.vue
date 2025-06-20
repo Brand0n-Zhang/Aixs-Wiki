@@ -198,6 +198,7 @@ const reset = () => {
     bottom_pressure.value = null;
     total_travel.value = null;
     searchName.value = '';
+    goSearch();
 }
 
 
